@@ -10,6 +10,10 @@ export default function MapLayer({ geoData, mymap }) {
   const [path, setPath] = useState("");
   const [lineData, setLineData] = useState(null);
 
+  /**
+   * Function which is called as user selects paths from the select list
+   * It will ease the focus into the initial coordinates of the path and sets linedata
+   */
   const handleChangePath = (e) => {
     setStart(false);
     const currentLine = geoData?.find(

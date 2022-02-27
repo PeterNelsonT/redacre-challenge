@@ -20,12 +20,20 @@ export default function MovingMarker({
     [path]
   );
 
+  /**
+   * Called when user changes the slider
+   * This will set the moving marker to the selected slide value
+   */
   const sliderChange = (e) => {
     setStart(false);
     currentPointRef.current = e.target.value;
     moveMarker();
   };
 
+  /**
+   * Function to move marker
+   * This will create a geojson point and sets in the state
+   */
   const moveMarker = () => {
     if (currentPointRef.current >= coordinates.length) {
       setStart((pre) => !pre);
@@ -63,6 +71,9 @@ export default function MovingMarker({
     let startTime = 0;
     let frameId = null;
 
+    /**
+     * Runs the window animation
+     */
     function animate(timestamp) {
       // animate function to set location
       if (!startTime || timestamp - startTime >= timer * 1000) {

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable react-hooks/exhaustive-deps */
-import mapboxgl from "mapbox-gl"; 
+import mapboxgl from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 import { Map, NavigationControl, MapProvider } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -15,6 +15,11 @@ export default function MapView({ geoData }) {
   const mapRef = useRef();
   const [mapLoaded, setMapLoaded] = useState(false);
 
+  /**
+   * Called when map load even happens and set the state
+   * This function will also take icon urls from the data received from server
+   * It initalises each icon
+   */
   const handleMapLoad = () => {
     const icons = geoData
       ?.map((el) => el.icon)

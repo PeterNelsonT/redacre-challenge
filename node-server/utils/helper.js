@@ -1,5 +1,8 @@
 const fs = require("fs");
 
+/**
+ * Function to create geojson data from json files
+ */
 export const createGeojsonData = async () => {
   const data1 = await fs.promises.readFile(
     "./data/popeye-village-balluta.geojson",
@@ -41,6 +44,9 @@ export const createGeojsonData = async () => {
   return data;
 };
 
+/**
+ * This function will gets data and stores in mongo if it doesn't exist
+ */
 export const initialiseDB = async (dbo) => {
   const data = await createGeojsonData();
   let db_connect = dbo.getDb("movement");
@@ -59,6 +65,11 @@ export const initialiseDB = async (dbo) => {
     });
 };
 
+/**
+ * This function will send the data to the new ws client
+ * data comes from mongo if it exists
+ * incase of any setback data is send from files
+ */
 export const initialiseClient = async (ws, dbo) => {
   let db_connect = dbo.getDb("movement");
   db_connect

@@ -15,17 +15,18 @@ const wss = new WebSocket.Server({ server: server });
 
 app.use(logger("dev"));
 app.use(cors(), bodyParser.json());
-
+// initialise ws and listens to client
 wss.on("connection", function connection(ws) {
   console.log("A new client Connected!");
   Helper.initialiseClient(ws, dbo);
 });
 
+// connect mongo
 dbo.connectToServer(function (err) {
   if (err) console.error(err);
   else Helper.initialiseDB(dbo);
 });
-
+//start listening at port
 server.listen(process.env.PORT, () => {
   console.log(`Server is running on port:${process.env.PORT}`);
 });
