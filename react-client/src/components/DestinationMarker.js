@@ -1,18 +1,6 @@
 import { Marker, Popup } from "react-map-gl";
 import Pin from "./Pin";
-
-function secondsToHms(d) {
-  if (d === null) return;
-  d = Number(d);
-  var h = Math.floor(d / 3600);
-  var m = Math.floor((d % 3600) / 60);
-  var s = Math.floor((d % 3600) % 60);
-
-  var hDisplay = h > 0 ? h + (h === 1 ? " hour, " : " hours, ") : "";
-  var mDisplay = m > 0 ? m + (m === 1 ? " minute, " : " minutes, ") : "";
-  var sDisplay = s > 0 ? s + (s === 1 ? " second" : " seconds") : "";
-  return hDisplay + mDisplay + sDisplay;
-}
+import { secondsToHms } from "../utils/helper";
 
 export default function DestinationMarker({
   destination,
